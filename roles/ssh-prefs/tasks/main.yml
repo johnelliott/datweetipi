@@ -1,0 +1,7 @@
+- file: path=~/.ssh/config.d state=directory
+- copy: src={{item}} dest=~/.ssh/config.d/{{item}}
+  with_items:
+  - 00-base
+  - 10-all
+- assemble: backup=true src=~/.ssh/config.d dest=~/.ssh/config
+  register: change_ssh_prefs

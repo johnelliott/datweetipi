@@ -1,0 +1,4 @@
+ssh_tunnel_servers:
+- eldergods.com
+ssh_tunnel_port: 22342
+ssh_tunnel_user: pi

@@ -1,0 +1,14 @@
+pkgs:
+- vim
+- synergy
+- git
+- openssh-server
+- screen
+- tmux
+- ansible
+- x11vnc
+- dstat
+- htop
+- zsh
+- zsh-doc
+- autossh

@@ -1,0 +1,9 @@
+[Unit]
+Description=Expose this system as controllable over Synergy
+
+[Service]
+ExecStart=/usr/bin/synergyc --no-daemon %i
+Restart=on-abnormal
+
+[Install]
+WantedBy=delay.target

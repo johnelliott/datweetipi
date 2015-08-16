@@ -1,0 +1,6 @@
+- copy: src=synergyc@.service dest=~/.config/systemd/user/synergyc@.service
+- command: systemctl --user daemon-reload
+- command: systemctl --user enable synergyc@{{item}}.service
+  with_items: synergy_servers
+- command: systemctl --user start synergyc@{{item}}.service
+  with_items: synergy_servers

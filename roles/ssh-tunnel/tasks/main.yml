@@ -1,0 +1,12 @@
+- template: src=ssh-tunnel@.service dest=/etc/systemd/system
+  sudo: true
+  register: changed_ssh_tunnel
+- command: systemctl daemon-reload
+  sudo: true
+  when: changed_ssh_tunnel|changed
+- command: systemctl enable ssh-tunnel@{{item}}
+  sudo: true
+  with_items: ssh_tunnel_servers
+- command: systemctl start ssh-tunnel@{{item}}
+  sudo: true
+  with_items: ssh_tunnel_servers

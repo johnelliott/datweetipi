@@ -1,0 +1,6 @@
+- stat: path=~/.ssh/id_ed25519
+  register: ssh_pem
+- command: ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519
+  when: not ssh_pem.stat.exists
+- shell: chdir=~/.ssh cat id_ed25519.pub >> authorized_keys2
+  when: not ssh_pem.stat.exists

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+  - base-packages
+  - hostname
+  - zsh
+  - ssh-keygen
+  - ssh-prefs
+  - ssh-tunnel
+  - usrv-delay
+  - usrv-synergyc
+  - usrv-x11vnc

@@ -1,0 +1,9 @@
+[Unit]
+Description=X11vnc desktop sharing
+
+[Service]
+ExecStart=/usr/bin/x11vnc
+Restart=on-abnormal
+
+[Install]
+WantedBy=delay.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Delay user session
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "sleep 6"
+
+[Install]
+WantedBy=default.target

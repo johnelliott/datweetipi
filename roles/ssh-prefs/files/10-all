@@ -1,0 +1,13 @@
+# 10-all
+# this section will affect all ssh connections
+Host *
+	# give the remote host a way to ssh to us, if they try to connect on their end to localhost:22344
+	RemoteForward 22344 localhost:22
+	
+	# ControlMaster is the best - if you try to re-ssh to a box, it uses the existing connection- super fast
+	ControlMaster auto
+	ControlPath /tmp/ssh_mux_%h_%p_%r
+
+	# Keepalive settings help keep the connection from collapsing- maybe?
+	ServerAliveInterval 240
+	ServerAliveCountMax 10

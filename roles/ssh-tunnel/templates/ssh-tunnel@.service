@@ -1,0 +1,10 @@
+[Unit]
+Description=Connect to a remote system
+
+[Service]
+ExecStart=/usr/bin/autossh -M {{ssh_tunnel_port}} -N %i
+User={{ssh_tunnel_user}}
+Reestart=on-abnormal
+
+[Install]
+WantedBy=default.target

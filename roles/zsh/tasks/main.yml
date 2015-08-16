@@ -1,0 +1,4 @@
+- lineinfile: dest=/etc/default/useradd regexp='^SHELL=' line='SHELL=/bin/zsh'
+  sudo: true
+- command: chsh {{ansible_user_id}} --shell /bin/zsh
+  sudo: true

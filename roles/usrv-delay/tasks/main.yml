@@ -1,0 +1,5 @@
+- file: path=~/.config/systemd/user state=directory
+- copy: src=delay.service dest=~/.config/systemd/user/delay.service
+  register: changed_delay
+- command: systemctl --user daemon-reload
+  when: changed_delay|changed

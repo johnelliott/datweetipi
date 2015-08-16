@@ -1,0 +1,8 @@
+- copy: src=x11vnc.service dest=~/.config/systemd/user/x11vnc.service
+  register: touched_x11vnc
+- command: systemctl --user daemon-reload
+  when: touched_x11vnc|changed
+- command: systemctl --user enable x11vnc.service
+  when: touched_x11vnc|changed
+- command: systemctl --user start x11vnc.service
+  when: touched_x11vnc|changed
