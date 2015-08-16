@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars:
+    img: http://can.ubuntu-mate.net/raspberry-pi/ubuntu-mate-15.04-desktop-armhf-raspberry-pi-2.img.bz2
+  tasks:
+    - local_action: shell pwd
+      register: pwd
+    - local_action: copy content={{img}} dest={{pwd.stdout}}/{{img|basename}}.url
+    - local_action: get_url url={{img}} dest={{pwd.stdout}}/{{img|basename}}
+    - local_action: file src={{pwd.stdout}}/{{img|basename}} dest=ubuntu.img.bz2 state=link
+    - local_action: apt name=gddrescue state=installed
