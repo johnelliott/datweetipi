@@ -1,11 +1,15 @@
 ---
 - hosts: all
   vars:
-    img: http://can.ubuntu-mate.net/raspberry-pi/ubuntu-mate-15.04-desktop-armhf-raspberry-pi-2.img.bz2
+    img_url: http://can.ubuntu-mate.net/raspberry-pi/ubuntu-mate-15.04-desktop-armhf-raspberry-pi-2.img.bz2
+    img_file: "{{pwd}}/{{img_url|basename}}"
+    pwd: "{{_pwd.stdout}}"
   tasks:
     - local_action: shell pwd
-      register: pwd
-    - local_action: copy content={{img}} dest={{pwd.stdout}}/{{img|basename}}.url
-    - local_action: get_url url={{img}} dest={{pwd.stdout}}/{{img|basename}}
-    - local_action: file src={{pwd.stdout}}/{{img|basename}} dest=ubuntu.img.bz2 state=link
+      register: _pwd
+    - local_action: copy content={{img_url}} dest={{img_file}}.url
+    - local_action: get_url url={{img_url}} dest={{img_file}}
+    - local_action: file src={{img_file}} dest={{pwd}}/ubuntu.img.bz2 state=link
+    - local_action: command chdir={{pwd}} bunzip2 -k {{img_file|basename}}
     - local_action: apt name=gddrescue state=installed
+      sudo: true
