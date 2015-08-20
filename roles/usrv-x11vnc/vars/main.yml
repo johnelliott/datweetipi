@@ -1,0 +1,10 @@
+x11vnc_options:
+- "-display :0"
+- "-rfbport 5900"
+- "-shared"
+- "-gui tray"
+- "-avahi"
+- "-usepw"
+- "-ncache 4"
+#- "-ssl"
+x11vnc_passwd: greenmean

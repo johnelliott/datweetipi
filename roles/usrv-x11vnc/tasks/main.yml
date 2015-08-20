@@ -1,8 +1,18 @@
-- copy: src=x11vnc.service dest=~/.config/systemd/user/x11vnc.service
+- template: src=x11vnc.service dest=~/.config/systemd/user/x11vnc.service
   register: touched_x11vnc
 - command: systemctl --user daemon-reload
   when: touched_x11vnc|changed
+
+- stat: path=~/.vnc/passwdfile
+  register: x11vnc_passwdfile
+- file: path=~/.vnc state=directory
+  when: not x11vnc_passwdfile.stat.exists
+- copy: content={{ x11vnc_passwd|join('\n') if x11vnc_passwd is sequence and x11vnc_passwd is not string else x11vnc_passwd }} dest=~/.vnc/passwdfile
+  when: not x11vnc_passwdfile.stat.exists
+
 - command: systemctl --user enable x11vnc.service
+  with_items: x11vnc_displays
   when: touched_x11vnc|changed
-- command: systemctl --user start x11vnc.service
+- command: systemctl --user restart x11vnc.service
+  with_items: x11vnc_displays
   when: touched_x11vnc|changed

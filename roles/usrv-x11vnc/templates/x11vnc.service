@@ -2,7 +2,7 @@
 Description=X11vnc desktop sharing
 
 [Service]
-ExecStart=/usr/bin/x11vnc
+ExecStart=/usr/bin/x11vnc {{ x11vnc_options|join(' ') }}
 Restart=on-abnormal
 
 [Install]
