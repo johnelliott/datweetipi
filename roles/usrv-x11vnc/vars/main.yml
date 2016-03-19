@@ -9,4 +9,4 @@ x11vnc_options:
 - "-usepw"
 # cache doesn't work with OSX screenshairng app #- "-ncache 4"
 #- "-ssl"
-x11vnc_passwd: greenmean
+x11vnc_passwd: raspberry

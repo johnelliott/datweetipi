@@ -3,7 +3,7 @@
   roles:
   - base-packages
   - hostname
-  - zsh
+# - zsh
   - ssh-keygen
   - ssh-prefs
   - ssh-tunnel

@@ -9,6 +9,6 @@ pkgs:
 - x11vnc
 - dstat
 - htop
-- zsh
-- zsh-doc
+#- zsh
+#- zsh-doc
 - autossh
